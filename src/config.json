@@ -1,0 +1,8 @@
+{
+  "game": {
+    "width": 864,
+    "height": 540,
+    "minWidth": 480,
+    "minHeight": 300 
+  }
+}
