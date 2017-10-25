@@ -27,6 +27,7 @@ function startGame() {
     groud: atlas.textures['ground.png'],
     wall: atlas.textures['wall.png']
   })
+  app.stage.addChild(map)
 
   const tank = new Tank(center.x, center.y, atlas.textures['tank-red.png'])
   app.stage.addChild(tank)
@@ -36,5 +37,22 @@ function startGame() {
   
   app.ticker.add((deltaTime) => {
     tank.update(deltaTime)
+    
+    updateCamera(map, tank)
   });
+}
+
+function updateCamera(map, entity) {
+  // Camera implementation
+    
+  if (entity.x > center.x && entity.x < map.width - center.x) {
+    app.stage.pivot.x = entity.x
+    app.stage.position.x = center.x
+  } 
+
+  if (entity.y > center.y && entity.y < map.height - center.y) {
+    app.stage.pivot.y = entity.y
+    app.stage.position.y = center.y
+  }
+
 }

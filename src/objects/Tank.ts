@@ -20,7 +20,7 @@ export default class Tank extends PIXI.Sprite {
     this.anchor.x = 0.5;
     this.anchor.y = 0.5;
 
-    this.speed = 10
+    this.speed = 5
     this.dx = 0
     this.dy = 0
     this.vx = 0

@@ -2,17 +2,23 @@ import 'pixi'
 import 'config'
 import Tile from './Tile'
 
-export default class GameMap {
+export default class GameMap extends PIXI.Container {
   app: PIXI.Application
   groudTexture: PIXI.Texture
   wallTexture: PIXI.Texture
   tiles: PIXI.Sprite[][]
+  width: number
+  height: number
 
   constructor(app, textures) {
+    super()
     this.app = app
     this.groudTexture = textures.groud
     this.wallTexture = textures.wall
     this.tiles = []
+
+    this.width = config.map.cols * config.tile.width
+    this.height = config.map.rows * config.tile.height
 
     this.initGrid()
   }
@@ -56,6 +62,7 @@ export default class GameMap {
       texture
     )
     this.tiles[row][col] = tile
-    this.app.stage.addChild(tile)
+    this.addChild(tile)
+    // this.app.stage.addChild(tile)
   }  
 }

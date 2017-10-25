@@ -35,8 +35,6 @@ export default class KeyboardState {
 
     this.keyStates[code] = keyState
     this.keyMap[code](keyState)
-    
-    console.log(code, keyState, this.keyStates);
   }
 
   listenTo(window) {
