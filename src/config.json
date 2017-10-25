@@ -7,8 +7,8 @@
   },
 
   "map": {
-    "rows": 20,
-    "cols": 20,
+    "rows": 50,
+    "cols": 50,
     "wallChance": 0.05,
     "blockChance": 0.02
   },
