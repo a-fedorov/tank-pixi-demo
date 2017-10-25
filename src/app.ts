@@ -4,12 +4,13 @@ import 'config'
 import * as atlasImage from '../assets/sprites/battle-city.png'
 import * as atlasData from './../assets/sprites/battle-city.json'
 
+import GameMap from './objects/GameMap'
 import Tank from './objects/Tank'
 import {setupKeyboard} from './input/setupKeyboard'
 
 
 // Init app
-const app = new PIXI.Application(config.game.width, config.game.height);
+const app = new PIXI.Application(config.game.width, config.game.height, {transparent: true});
 document.body.appendChild(app.view);
 
 // Create atlas texture from image 
@@ -22,6 +23,11 @@ atlas.parse(() => {
 })
 
 function startGame() {
+  const map = new GameMap(app, {
+    groud: atlas.textures['ground.png'],
+    wall: atlas.textures['wall.png']
+  })
+
   const tank = new Tank(center.x, center.y, atlas.textures['tank-red.png'])
   app.stage.addChild(tank)
   

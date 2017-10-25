@@ -13,6 +13,8 @@ export default class Tank extends PIXI.Sprite {
     super(texture)
     this.x = x
     this.y = y
+    this.width = config.tile.width
+    this.height = config.tile.height
 
     // Rotate around the center
     this.anchor.x = 0.5;
