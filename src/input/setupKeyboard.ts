@@ -3,19 +3,19 @@ import Keyboard from './KeyboardState'
 export function setupKeyboard(entity) {
   const input = new Keyboard()
 
-  input.addMapping('ArrowUp', keyState => {
+  input.addMapping(['ArrowUp', 'KeyW'], keyState => {
     entity.go(setDirection(0, -1), keyState)
   })
 
-  input.addMapping('ArrowDown', keyState => {
+  input.addMapping(['ArrowDown', 'KeyS'], keyState => {
     entity.go(setDirection(0, 1), keyState)
   })
 
-  input.addMapping('ArrowLeft', keyState => {
+  input.addMapping(['ArrowLeft', 'KeyA'], keyState => {
     entity.go(setDirection(-1, 0), keyState)
   })
 
-  input.addMapping('ArrowRight', keyState => {
+  input.addMapping(['ArrowRight', 'KeyD'], keyState => {
     entity.go(setDirection(1, 0), keyState)
   })
   

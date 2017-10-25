@@ -43,8 +43,8 @@ function startGame() {
 }
 
 function updateCamera(map, entity) {
-  // Camera implementation
-    
+    // Camera implementation
+
   if (entity.x > center.x && entity.x < map.width - center.x) {
     app.stage.pivot.x = entity.x
     app.stage.position.x = center.x

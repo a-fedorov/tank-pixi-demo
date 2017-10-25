@@ -13,8 +13,12 @@ export default class KeyboardState {
     this.keyMap = {}
   }
 
-  addMapping(code: string, callback: Function) {
-    this.keyMap[code] = callback
+  addMapping(keyCodes: string | string[], callback: Function) {
+    let codes: string[] = (typeof keyCodes === 'string') ? [keyCodes] : keyCodes
+
+    codes.forEach(code => {
+      this.keyMap[code] = callback
+    })
   }
 
   handleEvent(event) {
