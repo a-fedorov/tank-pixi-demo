@@ -4,5 +4,20 @@
     "height": 540,
     "minWidth": 480,
     "minHeight": 300 
+  },
+
+  "map": {
+    "rows": 10,
+    "cols": 10
+  },
+
+  "tank": {
+    "width": 32,
+    "height": 32
+  },
+
+  "tile": {
+    "width": 35,
+    "height": 35
   }
 }

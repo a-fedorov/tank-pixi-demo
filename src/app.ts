@@ -1,36 +1,34 @@
 import 'pixi'
 import 'config'
-import * as tankRedImage from './../assets/images/tank-red.png'
 
-// The application will create a renderer using WebGL, if possible,
-// with a fallback to a canvas render. It will also setup the ticker
-// and the root stage PIXI.Container.
+import * as atlasImage from '../assets/sprites/battle-city.png'
+import * as atlasData from './../assets/sprites/battle-city.json'
+
+import Tank from './objects/Tank'
+import {setupKeyboard} from './input/setupKeyboard'
+
+
+// Init app
 const app = new PIXI.Application(config.game.width, config.game.height);
-
-// The application will create a canvas element for you that you
-// can then insert into the DOM.
 document.body.appendChild(app.view);
 
-// load the texture we need
-PIXI.loader.add('bunny', tankRedImage).load((loader, resources) => {
+// Create atlas texture from image 
+const baseTexture = PIXI.BaseTexture.fromImage(atlasImage)
+const atlas = new PIXI.Spritesheet(baseTexture, atlasData)
+const center = new PIXI.Point(app.renderer.width / 2, app.renderer.height / 2)
 
-    // This creates a texture from a 'bunny.png' image.
-    let bunny = new PIXI.Sprite(resources.bunny.texture);
+atlas.parse(() => {
+  startGame()
+})
 
-    // Setup the position of the bunny
-    bunny.x = app.renderer.width / 2;
-    bunny.y = app.renderer.height / 2;
-
-    // Rotate around the center
-    bunny.anchor.x = 0.5;
-    bunny.anchor.y = 0.5;
-
-    // Add the bunny to the scene we are building.
-    app.stage.addChild(bunny);
-
-    // Listen for frame updates
-    app.ticker.add(() => {
-         // each frame we spin the bunny around a bit
-        bunny.rotation += 0.01;
-    });
-});
+function startGame() {
+  const tank = new Tank(center.x, center.y, atlas.textures['tank-red.png'])
+  app.stage.addChild(tank)
+  
+  const input = setupKeyboard(tank)
+  input.listenTo(window)
+  
+  app.ticker.add((deltaTime) => {
+    tank.update(deltaTime)
+  });
+}
