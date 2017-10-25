@@ -1,0 +1,17 @@
+{
+  "frames": {
+    "tank-red.png": {
+      "frame": {"x": 128,"y": 128,"w": 16, "h": 16},
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+      "sourceSize": {"w":16,"h":16}
+    }
+  },
+  "meta": {
+    "image": "tiles.png",
+    "format": "RGBA8888",
+    "size": {"w":795,"h":1002},
+    "scale": "1"
+  }
+}
