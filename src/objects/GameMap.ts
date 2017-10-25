@@ -19,23 +19,26 @@ export default class GameMap extends PIXI.Container {
     this.textures = textures
 
     this.width = config.map.cols * config.tile.width
-    this.height = config.map.rows * config.tile.height
+    this.height = config.map.rows * config.tile.height    
   }
 
   fill() {
     this.level.createCollisionGrid(config.map.rows, config.map.cols)
 
+    // Fill map with tiles
     for (let row = 0; row < config.map.rows; row++) {
       for (let col = 0; col < config.map.cols; col++) {
-        this.set(row, col, this.level.grid.get(row, col))
+        const type = this.level.grid.get(row, col)
+        this.set(row, col, type)
       }
     }
+
   }
 
   get(row, col) {
     
   }
-  
+
   set(row, col, value: string) {
     const tile = new Tile(
       row * config.tile.width, 

@@ -11,13 +11,6 @@ export default class Tile extends PIXI.Sprite {
     this.width = config.tile.width
     this.height = config.tile.height
     this.size = config.tile.size
+    this.anchor.set(0.5)
   }
-
-  // getBounds() {
-  //   const x1 = this.x
-  //   const x2 = x1 + this.size
-  //   const y1 = this.y
-  //   const y2 = y1 + this.size
-  //   return {}
-  // }
 }

@@ -28,15 +28,14 @@ function startGame() {
   map.fill()
   app.stage.addChild(map)
 
-  window['level'] = map.level
-
   const tank = new Tank(center.x, center.y, atlas.textures['tank-green'])
   map.level.addEntity(tank)
   app.stage.addChild(tank)
   
   const input = setupKeyboard(tank)
-  input.listenTo(window)
+  input.listenTo(window)  
   
+  // Game loop
   app.ticker.add((deltaTime) => {
     map.level.update(deltaTime)
     updateCamera(map, tank)
@@ -44,7 +43,7 @@ function startGame() {
 }
 
 function updateCamera(map, entity) {
-    // Camera implementation
+  // Basic camera implementation
 
   if (entity.x > center.x && entity.x < map.width - center.x) {
     app.stage.pivot.x = entity.x

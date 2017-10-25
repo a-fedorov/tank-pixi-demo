@@ -9,6 +9,7 @@ export default class Tank extends PIXI.Sprite {
   dx: number
   dy: number
   speed: number
+  size: number
 
   constructor(x: number, y: number, texture: PIXI.Texture) {
     super(texture)
@@ -16,6 +17,7 @@ export default class Tank extends PIXI.Sprite {
     this.y = y
     this.width = config.tile.width
     this.height = config.tile.height
+    this.size = config.tile.size
 
     // Rotate around the center
     this.anchor.set(0.5)
