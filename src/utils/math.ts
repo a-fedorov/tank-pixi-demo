@@ -29,3 +29,11 @@ export class Matrix {
     this.grid[x][y] = value;
   }
 }
+
+export function toRad(valueInDegrees: number): number {
+  return valueInDegrees * (Math.PI / 180)
+}
+
+export function toDeg(valueInRadians: number): number {
+  return valueInRadians * (180 / Math.PI)
+}

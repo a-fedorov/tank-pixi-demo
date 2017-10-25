@@ -1,6 +1,7 @@
 import 'pixi'
 import 'config'
 import Entity from './Entity'
+import {toRad} from '../utils/math'
 
 export default class Tank extends PIXI.Sprite {
   vx: number
@@ -30,6 +31,23 @@ export default class Tank extends PIXI.Sprite {
   go(dir: PIXI.Point, keyState) {
     this.dx = dir.x * keyState
     this.dy = dir.y * keyState
+    this.rotate(dir)
+  }
+  
+  rotate(dir: PIXI.Point) {
+    let angle = 0
+  
+    if (dir.x === 1) {
+      angle = 90
+    } else if (dir.x === -1) {
+      angle = 270
+    } else if (dir.y === 1) {
+      angle = 180
+    } else if (dir.y === -1) {
+      angle = 0
+    }
+    
+    this.rotation = toRad(angle)
   }
 
   checkBounds() {
