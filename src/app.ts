@@ -31,14 +31,14 @@ function startGame() {
   window['level'] = map.level
 
   const tank = new Tank(center.x, center.y, atlas.textures['tank-green'])
+  map.level.addEntity(tank)
   app.stage.addChild(tank)
   
   const input = setupKeyboard(tank)
   input.listenTo(window)
   
   app.ticker.add((deltaTime) => {
-    tank.update(deltaTime)
-    
+    map.level.update(deltaTime)
     updateCamera(map, tank)
   });
 }

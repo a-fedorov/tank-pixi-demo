@@ -1,17 +1,24 @@
 import 'config'
 import {Matrix} from '../utils/math'
+import TileCollider from './TileCollider'
 
 export default class Level {
   grid: Matrix;
-  tileSize: number
+  entities: any[]
   wallChance: number
   tileTypes: string[]
+  collider: TileCollider
   
   constructor(tileSize = config.tile.size) {
     this.grid = new Matrix()
     this.wallChance = 0.1
     this.tileTypes = ['ground', 'wall', 'block']
-    this.tileSize = tileSize
+    this.entities = []
+    this.collider = new TileCollider(this, tileSize)
+  }
+
+  addEntity(entity) {
+    this.entities.push(entity)
   }
 
   createCollisionGrid(rows: number, cols: number) {
@@ -29,30 +36,18 @@ export default class Level {
       }
     }
   }
- 
-  check(entity) {
-    
-  }
 
-  checkX(entity) {
+  update(deltaTime) {
+    this.entities.forEach(entity => {
+      entity.update(deltaTime)
 
-  }
+      entity.x += entity.vx
+      this.collider.checkX(entity)
 
-  checkY(entity) {
+      entity.y += entity.vy
+      this.collider.checkY(entity)
 
-  }
-
-  toIndex(pos: number) {
-    return Math.floor(pos / this.tileSize)
-  }
-
-  getByIndex(row: number, col: number) {
-    const type = this.grid.get(row, col)
-    const x1 = row * this.tileSize
-    const x2 = x1 + this.tileSize
-    const y1 = col * this.tileSize
-    const y2 = y1 + this.tileSize
-
-    return { type, x1, x2, y1, y2 }
+      this.collider.checkBounds(entity)
+    })
   }
 }

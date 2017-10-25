@@ -18,8 +18,7 @@ export default class Tank extends PIXI.Sprite {
     this.height = config.tile.height
 
     // Rotate around the center
-    this.anchor.x = 0.5;
-    this.anchor.y = 0.5;
+    this.anchor.set(0.5)
 
     this.speed = 5
     this.dx = 0
@@ -50,31 +49,8 @@ export default class Tank extends PIXI.Sprite {
     this.rotation = toRad(angle)
   }
 
-  checkBounds() {
-    if (this.x < 0) {
-      this.vx = -this.vx
-      this.x = 0
-    } else if (this.x > config.map.cols * config.tile.width) {
-      this.vx = -this.vx
-      this.x = config.map.cols * config.tile.width - this.width
-    }
-
-    if (this.y < 0) {
-      this.vy = -this.vy
-      this.y = 0
-    } else if (this.y > config.map.rows * config.tile.height) {
-      this.vy = -this.vy
-      this.y = config.map.rows * config.tile.height - this.height
-    }
-  }
-  
   update(deltaTime: number) {
     this.vx = this.dx * this.speed * deltaTime
     this.vy = this.dy * this.speed * deltaTime
-
-    this.x += this.vx
-    this.y += this.vy
-
-    this.checkBounds()
   }
 }
