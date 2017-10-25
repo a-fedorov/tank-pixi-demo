@@ -8,7 +8,9 @@
 
   "map": {
     "rows": 50,
-    "cols": 50
+    "cols": 50,
+    "wallChance": 0.05,
+    "blockChance": 0.02
   },
 
   "tank": {
@@ -18,6 +20,7 @@
 
   "tile": {
     "width": 32,
-    "height": 32
+    "height": 32,
+    "size": 32
   }
 }

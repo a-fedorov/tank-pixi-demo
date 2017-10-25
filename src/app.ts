@@ -23,13 +23,14 @@ atlas.parse(() => {
 })
 
 function startGame() {
-  const map = new GameMap(app, {
-    groud: atlas.textures['ground.png'],
-    wall: atlas.textures['wall.png']
-  })
+  const map = new GameMap(app, atlas.textures)
+
+  map.fill()
   app.stage.addChild(map)
 
-  const tank = new Tank(center.x, center.y, atlas.textures['tank-red.png'])
+  window['level'] = map.level
+
+  const tank = new Tank(center.x, center.y, atlas.textures['tank-green'])
   app.stage.addChild(tank)
   
   const input = setupKeyboard(tank)

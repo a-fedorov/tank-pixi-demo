@@ -1,17 +1,26 @@
 {
   "frames": {
-    "tank-red.png": {
+    "tank-red": {
       "frame": {"x": 128,"y": 128,"w": 16, "h": 16},
-      "rotated": false,
-      "trimmed": false,
-      "spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
       "sourceSize": {"w":16,"h":16}
     },
-    "ground.png": {
+    "tank-green": {
+      "frame": {"x": 0,"y": 128,"w": 16, "h": 16},
+      "sourceSize": {"w":16,"h":16}
+    },
+    "tank-gold": {
+      "frame": {"x": 0,"y": 0,"w": 16, "h": 16},
+      "sourceSize": {"w":16,"h":16}      
+    },
+    "ground": {
       "frame": {"x": 304,"y": 48,"w": 16, "h": 16},
       "sourceSize": {"w":16,"h":16}
     },
-    "wall.png": {
+    "block": {
+      "frame": {"x": 256,"y": 16,"w": 16, "h": 16},
+      "sourceSize": {"w":16,"h":16}      
+    },
+    "wall": {
       "frame": {"x": 256,"y": 0,"w": 16, "h": 16},
       "sourceSize": {"w":16,"h":16}
     }
