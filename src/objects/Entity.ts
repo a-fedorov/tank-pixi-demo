@@ -1,17 +1,24 @@
 import 'pixi'
 
 export default class Entity extends PIXI.Sprite {  
-  constructor(x, y, texture) {
+  size: number;
+  vy: number;
+  vx: number;
+
+  constructor(x, y, rotation, size, texture) {
     super(texture)
     this.x = x
     this.y = y
+    this.vx = 0
+    this.vy = 0
+    this.size = size
+    this.rotation = rotation
 
     // Rotate around the center
-    this.anchor.x = 0.5;
-    this.anchor.y = 0.5;    
+    this.anchor.set(0.5)
   }
 
   update(deltaTime: number) {
-
+    
   }
 }

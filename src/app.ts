@@ -28,11 +28,11 @@ function startGame() {
   map.fill()
   app.stage.addChild(map)
 
-  const tank = new Tank(center.x, center.y, atlas.textures['tank-gold'])
+  const tank = new Tank(center.x, center.y, 'red', atlas.textures['tank-red'])
   map.level.addEntity(tank)
   app.stage.addChild(tank)
   
-  const bulletManager = new BulletManager(app, atlas.textures['bullet'])
+  const bulletManager = new BulletManager(app, atlas.textures['bullet'], tank, map.level.collider)
   tank.setupFire(bulletManager)
   
   const input = setupKeyboard(tank, () => tank.fire())

@@ -117,8 +117,27 @@ export default class TileCollider {
     }
   }
 
-  toIndex(pos: number) {
-    return Math.floor(pos / this.size)
+  checkBulletCollision(x: number, y: number): boolean {
+    // Here half size is a bit of a dirty hack but it's works correcly
+    const row = this.toIndex(x + this.halfSize)
+    const col = this.toIndex(y + this.halfSize)
+
+    const tileType = this.level.grid.get(row, col)
+    
+    if (!tileType || tileType === 'ground') {
+      return false
+    }
+
+    console.log(row, col, tileType);
+    return true
+    
+    // console.log(x, y);
+    // console.log(match);
+    // return true
+  }
+
+  toIndex(pos: number, size: number = this.size) {
+    return Math.floor(pos / size)
   }
 
   toIndexRange(pos1, pos2) {

@@ -9,24 +9,27 @@ export default class Tank extends PIXI.Sprite {
   vy: number
   dx: number
   dy: number
+  type: string
   speed: number
   size: number
   dir: PIXI.Point
   startDistance: number
+  NUMBER_OF_BULLETS: number;
 
-  constructor(x: number, y: number, texture: PIXI.Texture) {
+  constructor(x: number, y: number, type: string, texture: PIXI.Texture) {
     super(texture)
     this.x = x
     this.y = y
+    this.type = type
     this.width = config.tile.width
     this.height = config.tile.height
     this.size = config.tile.size
+    this.NUMBER_OF_BULLETS = config.tank[type].pool    
 
-    // Rotate around the center
     this.anchor.set(0.5)
 
     this.startDistance = 16
-    this.speed = 5
+    this.speed = config.tank.speed
     this.dx = 0
     this.dy = 0
     this.vx = 0
@@ -63,10 +66,14 @@ export default class Tank extends PIXI.Sprite {
   }
 
   fire() {
-    const offsetX = Math.cos(this.rotation) * this.startDistance + this.dir.x * this.startDistance + this.dir.y * 20
-    const offsetY = Math.sin(this.rotation) * this.startDistance + this.dir.y * this.startDistance - this.dir.x * 20
+    const offsetX = this.dir.x * this.size / 2
+    const offsetY = this.dir.y * this.size / 2
     const pos = new PIXI.Point(this.x + offsetX, this.y + offsetY)
     this.bulletManager.shoot(this.rotation, pos)
+  }
+
+  changeTank(type: string) {
+    
   }
 
   update(deltaTime: number) {
