@@ -74,7 +74,7 @@ export default class BulletManager extends PIXI.Container {
       bullet.x += Math.cos(bullet.rotation - Math.PI / 2) * this.bulletSpeed
       bullet.y += Math.sin(bullet.rotation - Math.PI / 2) * this.bulletSpeed
 
-      if (bullet.x < 0 || bullet.x > config.game.width || bullet.y < 0 || bullet.y > config.game.height) {
+      if (bullet.x < 0 || bullet.x > GAME_WIDTH || bullet.y < 0 || bullet.y > GAME_HEIGHT) {
         bullet.destroy()
         this.bullets.splice(i, 1)
         continue
