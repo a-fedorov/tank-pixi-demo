@@ -23,6 +23,10 @@
     "wall": {
       "frame": {"x": 256,"y": 0,"w": 16, "h": 16},
       "sourceSize": {"w":16,"h":16}
+    },
+    "bullet": {
+      "frame": {"x": 322,"y": 102,"w": 4 , "h": 4 },
+      "sourceSize": {"w":4 ,"h":4 }
     }
   },
   "meta": {

@@ -4,12 +4,14 @@ import Entity from './Entity'
 import {toRad} from '../utils/math'
 
 export default class Tank extends PIXI.Sprite {
+  bulletManager: any;
   vx: number
   vy: number
   dx: number
   dy: number
   speed: number
   size: number
+  dir: PIXI.Point
 
   constructor(x: number, y: number, texture: PIXI.Texture) {
     super(texture)
@@ -27,9 +29,11 @@ export default class Tank extends PIXI.Sprite {
     this.dy = 0
     this.vx = 0
     this.vy = 0
+    this.dir = new PIXI.Point(0, -1)
   }
 
   go(dir: PIXI.Point, keyState) {
+    this.dir = dir
     this.dx = dir.x * keyState
     this.dy = dir.y * keyState
     this.rotate(dir)
@@ -49,6 +53,18 @@ export default class Tank extends PIXI.Sprite {
     }
     
     this.rotation = toRad(angle)
+  }
+
+  setupFire(bulletManager) {
+    this.bulletManager = bulletManager
+  }
+
+  fire() {
+    const pos = new PIXI.Point(
+      this.x + Math.cos(this.rotation) * 20 + this.dir.y * 24 + this.dir.x * 16,
+      this.y + Math.sin(this.rotation) * 20 - this.dir.x * 24 + this.dir.y * 16
+    )
+    this.bulletManager.shoot(this.rotation, pos)
   }
 
   update(deltaTime: number) {

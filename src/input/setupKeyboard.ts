@@ -1,6 +1,6 @@
 import Keyboard from './KeyboardState'
 
-export function setupKeyboard(entity) {
+export function setupKeyboard(entity, callback) {
   const input = new Keyboard()
 
   input.addMapping(['ArrowUp', 'KeyW'], keyState => {
@@ -18,6 +18,8 @@ export function setupKeyboard(entity) {
   input.addMapping(['ArrowRight', 'KeyD'], keyState => {
     entity.go(setDirection(1, 0), keyState)
   })
+
+  input.addMapping('Space', callback)
   
   return input
 }

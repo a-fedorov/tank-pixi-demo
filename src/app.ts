@@ -6,6 +6,7 @@ import * as atlasData from './../assets/sprites/battle-city.json'
 
 import GameMap from './objects/GameMap'
 import Tank from './objects/Tank'
+import BulletManager from './objects/BulletManager'
 import {setupKeyboard} from './input/setupKeyboard'
 
 
@@ -24,21 +25,24 @@ atlas.parse(() => {
 
 function startGame() {
   const map = new GameMap(app, atlas.textures)
-
   map.fill()
   app.stage.addChild(map)
 
-  const tank = new Tank(center.x, center.y, atlas.textures['tank-green'])
+  const tank = new Tank(center.x, center.y, atlas.textures['tank-gold'])
   map.level.addEntity(tank)
   app.stage.addChild(tank)
   
-  const input = setupKeyboard(tank)
-  input.listenTo(window)  
+  const bulletManager = new BulletManager(app, atlas.textures['bullet'])
+  tank.setupFire(bulletManager)
+  
+  const input = setupKeyboard(tank, () => tank.fire())
+  input.listenTo(window)
   
   // Game loop
   app.ticker.add((deltaTime) => {
     map.level.update(deltaTime)
     updateCamera(map, tank)
+    bulletManager.update(deltaTime)
   });
 }
 
