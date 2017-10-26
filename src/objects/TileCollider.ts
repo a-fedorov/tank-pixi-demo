@@ -118,7 +118,7 @@ export default class TileCollider {
   }
 
   checkBulletCollision(x: number, y: number): boolean {
-    // Here half size is a bit of a dirty hack but it's works correcly
+    // Here half size is a bit of a dirty hack but it's works correcly )
     const row = this.toIndex(x + this.halfSize)
     const col = this.toIndex(y + this.halfSize)
 
@@ -128,12 +128,7 @@ export default class TileCollider {
       return false
     }
 
-    console.log(row, col, tileType);
     return true
-    
-    // console.log(x, y);
-    // console.log(match);
-    // return true
   }
 
   toIndex(pos: number, size: number = this.size) {

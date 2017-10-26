@@ -81,7 +81,6 @@ export default class BulletManager extends PIXI.Container {
       }      
       
       if (this.collider.checkBulletCollision(bullet.x, bullet.y)) {
-        console.log('remove bullet');
         bullet.destroy()
         this.bullets.splice(i, 1)
       }
