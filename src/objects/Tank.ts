@@ -12,6 +12,7 @@ export default class Tank extends PIXI.Sprite {
   speed: number
   size: number
   dir: PIXI.Point
+  startDistance: number
 
   constructor(x: number, y: number, texture: PIXI.Texture) {
     super(texture)
@@ -24,11 +25,13 @@ export default class Tank extends PIXI.Sprite {
     // Rotate around the center
     this.anchor.set(0.5)
 
+    this.startDistance = 16
     this.speed = 5
     this.dx = 0
     this.dy = 0
     this.vx = 0
     this.vy = 0
+
     this.dir = new PIXI.Point(0, -1)
   }
 
@@ -60,10 +63,9 @@ export default class Tank extends PIXI.Sprite {
   }
 
   fire() {
-    const pos = new PIXI.Point(
-      this.x + Math.cos(this.rotation) * 20 + this.dir.y * 24 + this.dir.x * 16,
-      this.y + Math.sin(this.rotation) * 20 - this.dir.x * 24 + this.dir.y * 16
-    )
+    const offsetX = Math.cos(this.rotation) * this.startDistance + this.dir.x * this.startDistance + this.dir.y * 20
+    const offsetY = Math.sin(this.rotation) * this.startDistance + this.dir.y * this.startDistance - this.dir.x * 20
+    const pos = new PIXI.Point(this.x + offsetX, this.y + offsetY)
     this.bulletManager.shoot(this.rotation, pos)
   }
 
